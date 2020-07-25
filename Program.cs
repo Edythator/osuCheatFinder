@@ -80,10 +80,14 @@ namespace osuAnticheat___2020_07_06
             foreach (string file in buildFiles.Keys)
             {
                 string currentFile = BitConverter.ToString(md5.ComputeHash(File.ReadAllBytes(Path.Combine(path, file)))).Replace("-", "").ToLower();
+
                 if (currentFile == buildFiles[file].FileMD5)
-                    Variables.InfoMessage("Calculated file " + file + " with MD5: " + currentFile);
-                else
-                    Variables.WarningMessage("File " + file + " does not equate to the correct hash.");
+                    if (file.Contains("osu!auth"))
+                        Variables.WarningMessage("Detected osu! anticheat");
+                    else 
+                        Variables.InfoMessage("Calculated file " + file + " with MD5: " + currentFile);
+
+                else Variables.WarningMessage("File " + file + " does not equate to the correct hash.");
             }
             #endregion
 
