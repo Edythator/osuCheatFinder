@@ -13,20 +13,11 @@ namespace osuAnticheat___2020_07_06
         {
             int cheatFactor = 0;
             MD5 md5 = MD5.Create();
-            //string path = @"F:\osu!";
             string username = "";
             string path = "";
             Stopwatch timer = new Stopwatch();
 
             Console.WriteLine("Made by Edythator 2020 loul");
-
-            //check if current user is admin
-            /*if (!WindowsIdentity.GetCurrent().Owner.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
-            {
-                Console.WriteLine("Please run this program as an administrator. Exiting...");
-                Console.ReadLine();
-                return;
-            }*/
 
             //check if appdata/local/osu! exists
             if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "osu!")))
@@ -69,7 +60,6 @@ namespace osuAnticheat___2020_07_06
 
             if (buildFiles.Count == 0)
             {
-                //TODO: add historical versions?
                 Console.WriteLine("Your osu! seems to be either out of or date or modified. Please update your osu! client. Exiting...");
                 Console.ReadLine();
                 return;
