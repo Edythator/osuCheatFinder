@@ -28,32 +28,19 @@ namespace osuAnticheat___2020_07_06
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("[INFO] " + message);
         }
-
-        /*public static List<string> GetFiles(string path)
-        {
-            List<string> allFiles = new List<string>();
-
-            foreach (string files in Directory.GetFiles(path))
-                allFiles.Add(files);
-            foreach (string directory in Directory.GetDirectories(path))
-                GetFiles(directory);
-            return allFiles;
-        }*/
+        
         private static void AddFiles(string path, IList<string> files)
         {
             try
             {
-                Directory.GetFiles(path)
-                    .ToList()
-                    .ForEach(s => files.Add(s));
+                Directory.GetFiles(path).ToList().ForEach(s => files.Add(s));
 
-                Directory.GetDirectories(path)
-                    .ToList()
-                    .ForEach(s => AddFiles(s, files));
+                Directory.GetDirectories(path).ToList().ForEach(s => AddFiles(s, files));
             }
             catch { }
         }
 
+        //maybe make this an array of a struct?
         public static (string name, long fileSize, string hash, short cheatFactor)[] hashes =
         {
                 ("osu!fallback AQN Timewarp", 1316864, "66358ea5527ec37954b49828b79fa68e", 10),
